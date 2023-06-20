@@ -16,8 +16,15 @@ export class TodoComponent implements OnInit {
   constructor() { }
   deleteTask(taskToDelete: Task) {
     this.tasks = this.tasks.filter(task=>task!=taskToDelete);
+    this.save();
+  }
+  save(){
+    localStorage.setItem("tasks", JSON.stringify(this.tasks));
   }
   ngOnInit(): void {
+    const tasksAsString = localStorage.getItem("tasks");
+    if (tasksAsString)
+      this.tasks = JSON.parse(tasksAsString);
     console.table(this.tasks);
   }
   add() {
@@ -26,6 +33,7 @@ export class TodoComponent implements OnInit {
       completed: false
     })
     this.title = '';
+    this.save();
   }
 
 }
