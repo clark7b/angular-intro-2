@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class TodoComponent {
 
+  title:string = 'The meaning of life = ';
+
 }
